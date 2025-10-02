@@ -202,13 +202,12 @@ export function AuthModal({ open, onOpenChange, defaultTab = "login" }: AuthModa
           // Wait a bit for auth context to update, then redirect based on user role
           setTimeout(() => {
             // Check auth context for user role, or fetch from database
-            // Use window.location for full page reload to ensure auth state is fresh
             if (authUser) {
               const dashboardPath = authUser.role === "doctor" ? "/doctor/dashboard" : "/patient/dashboard"
-              window.location.href = dashboardPath
+              router.push(dashboardPath)
             } else {
               // Fallback to patient dashboard if user not yet in context
-              window.location.href = "/patient/dashboard"
+              router.push("/patient/dashboard")
             }
           }, 1000)
         } else {
