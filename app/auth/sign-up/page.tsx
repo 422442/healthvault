@@ -41,7 +41,7 @@ export default function SignUpPage() {
         password,
         options: {
           emailRedirectTo: process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL || 
-            `${typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000'}/${userType}/dashboard`,
+            `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/${userType}/dashboard`,
           data: {
             full_name: fullName,
             phone: phone,
