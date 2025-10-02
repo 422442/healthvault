@@ -10,7 +10,7 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { ArrowLeft, CalendarIcon, Clock, MapPin, Star, User, CreditCard } from "lucide-react"
 import Link from "next/link"
-import { redirect, useParams } from "next/navigation"
+import { redirect, useParams, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { useToast } from "@/hooks/use-toast"
 
@@ -29,6 +29,7 @@ interface Doctor {
 export default function BookAppointment() {
   const { user, isLoading } = useAuth()
   const params = useParams()
+  const router = useRouter()
   const doctorId = params.doctorId as string
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date())
   const [selectedTime, setSelectedTime] = useState("")
@@ -95,7 +96,7 @@ export default function BookAppointment() {
 
     // Redirect to appointments page
     setTimeout(() => {
-      window.location.href = "/patient/appointments"
+      router.push("/patient/appointments")
     }, 1500)
   }
 
